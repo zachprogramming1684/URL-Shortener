@@ -1,9 +1,13 @@
 package com.zachprogramming.urlshortener.Model;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.time.LocalDateTime;
+
+@Entity
 public class URL
 {
     @Id
@@ -12,14 +16,16 @@ public class URL
 
     private String urlText;
     private String shortCode;
+    private LocalDateTime timeCreated;
 
     public URL()
     {
     }
-    public URL(String urlText, String shortCode)
+    public URL(String urlText, String shortCode, LocalDateTime timeCreated)
     {
         this.urlText = urlText;
         this.shortCode = shortCode;
+        this.timeCreated = timeCreated;
     }
 
     public Long getId() {
@@ -44,5 +50,13 @@ public class URL
 
     public void setShortCode(String shortCode) {
         this.shortCode = shortCode;
+    }
+
+    public LocalDateTime getTimeCreated() {
+        return timeCreated;
+    }
+
+    public void setTimeCreated(LocalDateTime timeCreated) {
+
     }
 }

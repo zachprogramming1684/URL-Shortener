@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface URLShortenerRepository extends JpaRepository<URL, Long>
 {
-
+    boolean existsByShortCode(String shortCode);
 }
