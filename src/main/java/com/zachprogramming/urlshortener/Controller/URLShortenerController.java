@@ -1,7 +1,10 @@
 package com.zachprogramming.urlshortener.Controller;
 
-import com.zachprogramming.urlshortener.Model.URL;
+import com.zachprogramming.urlshortener.Model.URLRequest;
 import com.zachprogramming.urlshortener.Service.URLShortenerService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,13 +22,17 @@ public class URLShortenerController
     }
 
     // this is for making the passed in url from the browser part of a json
-    public record UrlRequest(String originalUrl) {}
+    public record UrlRequest(
+            @NotBlank(message = "URL cannot be empty")
+            @URL(message = "Must be a valid web address (eg. https://www.google.com)")
+            String originalUrl
+    ) {}
 
     @PostMapping("/shorten")
-    public ResponseEntity<URL> shortenURL(@RequestBody UrlRequest request)
+    public ResponseEntity<URLRequest> shortenURL(@Valid @RequestBody UrlRequest request)
     {
-        URL newURL = urlShortenerService.generateURLCode(request.originalUrl);
-        return new ResponseEntity<>(newURL, HttpStatus.CREATED);
+        URLRequest newURLRequest = urlShortenerService.generateURLCode(request.originalUrl);
+        return new ResponseEntity<>(newURLRequest, HttpStatus.CREATED);
     }
 
     @GetMapping("/{code}")

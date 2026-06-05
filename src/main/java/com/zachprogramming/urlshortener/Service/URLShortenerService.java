@@ -1,6 +1,6 @@
 package com.zachprogramming.urlshortener.Service;
 
-import com.zachprogramming.urlshortener.Model.URL;
+import com.zachprogramming.urlshortener.Model.URLRequest;
 import com.zachprogramming.urlshortener.Repository.URLShortenerRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class URLShortenerService
         this.urlShortenerRepository = urlShortenerRepository;
     }
 
-    public URL generateURLCode(String url)
+    public URLRequest generateURLCode(String url)
     {
         String code;
 
@@ -30,14 +30,14 @@ public class URLShortenerService
         }
         while(urlShortenerRepository.existsByShortCode(code));
 
-        URL newURL = new URL(url, code, LocalDateTime.now());
-        urlShortenerRepository.save(newURL);
-        return newURL;
+        URLRequest newURLRequest = new URLRequest(url, code, LocalDateTime.now());
+        urlShortenerRepository.save(newURLRequest);
+        return newURLRequest;
     }
 
     public String getURLByCode(String code)
     {
-        Optional<URL> urlOptional = urlShortenerRepository.findByShortCode(code);
+        Optional<URLRequest> urlOptional = urlShortenerRepository.findByShortCode(code);
 
         if(urlOptional.isEmpty())
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Short link not found");

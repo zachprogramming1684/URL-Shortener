@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import java.time.LocalDateTime;
 
 @Entity
-public class URL
+public class URLRequest
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,10 +18,10 @@ public class URL
     private String shortCode;
     private LocalDateTime timeCreated;
 
-    public URL()
+    public URLRequest()
     {
     }
-    public URL(String urlText, String shortCode, LocalDateTime timeCreated)
+    public URLRequest(String urlText, String shortCode, LocalDateTime timeCreated)
     {
         this.urlText = urlText;
         this.shortCode = shortCode;
