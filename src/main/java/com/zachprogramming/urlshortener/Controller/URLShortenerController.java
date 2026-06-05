@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 public class URLShortenerController
@@ -42,5 +43,11 @@ public class URLShortenerController
         return ResponseEntity.status(HttpStatus.FOUND)
                 .location(URI.create(url))
                 .build();
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<URLRequest>> getAllURLs()
+    {
+        return ResponseEntity.ok(urlShortenerService.getAllURLs());
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -43,5 +44,10 @@ public class URLShortenerService
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Short link not found");
 
         return urlOptional.get().getUrlText();
+    }
+
+    public List<URLRequest> getAllURLs()
+    {
+        return urlShortenerRepository.findAll();
     }
 }
