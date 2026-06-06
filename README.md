@@ -44,7 +44,7 @@ git clone https://github.com/zachprogramming1684/URL-Shortener.git
 
 **2. Navigate to the cloned repository**
 ```
-cd "URL Shortener"
+cd URL-Shortener
 ```
 
 **3. Build and run the project**  
