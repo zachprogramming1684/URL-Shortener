@@ -36,7 +36,7 @@ public class URLShortenerController
         return new ResponseEntity<>(newURLRequest, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{code}")
+    @GetMapping("/{code:[a-zA-Z0-9]+}")
     public ResponseEntity<Void> getURLRedirect(@PathVariable String code)
     {
         String url = urlShortenerService.getURLByCode(code);
