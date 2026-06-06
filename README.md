@@ -10,9 +10,9 @@ A fast, lightweight URL shortener built to quickly convert long web addresses in
 ---
 
 ## About the Project
+* **Unique Code Generation:** Uses Java UUID to uniquely generate a short code for each URL.
 * **Instant Redirection:** Catches dynamic short codes and fires HTTP 302 responses to route users seamlessly.
 * **Robust Validation:** Implements Jakarta Validation to ensure database integrity and reject malformed inputs before they hit the server.
-* **Real-Time History:** Features a vanilla JavaScript frontend that dynamically fetches and displays a real-time feed of all generated links via the REST API.
 * **Zero-Config Setup:** Uses an embedded H2 database, making it incredibly easy for other developers to clone, compile, and run the project locally in seconds.
 * **Automated Documentation:** Integrated OpenAPI (Swagger) specification.
 
